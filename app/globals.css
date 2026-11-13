@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  --color-vox-charcoal: #1A1A1A;
+  --color-vox-ivory: #F5F1E8;
+  --color-vox-card: #EDE8DC;
+  --color-vox-emerald: #2E5C4E;
+  --color-vox-lime: #7BC47F;
+  --color-vox-grey: #6B6B6B;
+}
+
+:root {
+  --background: var(--color-vox-ivory);
+  --foreground: var(--color-vox-charcoal);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
