@@ -112,10 +112,10 @@ export default async function Home() {
         </p>
         
         <a 
-          href="/voxarena.apk" 
-          download
-          className="inline-flex items-center gap-3 bg-vox-emerald text-vox-ivory px-10 py-5 rounded-xl font-bold text-xl hover:bg-opacity-90 transition shadow-xl"
-        >
+  href="https://github.com/Astockorigins/voxarena-web/releases/download/v1.0.0/voxarena.apk" 
+  download
+  className="inline-flex items-center gap-3 bg-vox-emerald text-vox-ivory px-10 py-5 rounded-xl font-bold text-xl hover:bg-opacity-90 transition shadow-xl"
+>
           <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993.0004.5511-.4482.9997-.9993.9997zm-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997zm11.4045-6.02l1.9973-3.4592c.1152-.1996.0472-.4537-.1524-.5688-.1996-.1151-.4537-.0472-.5688.1524l-2.0237 3.5047c-1.3997-.6396-2.9654-.9984-4.6295-.9984-1.6637 0-3.2294.3588-4.6295.9984L6.351 5.4463c-.1151-.1996-.3692-.2675-.5688-.1524-.1996.1151-.2676.3692-.1524.5688l1.9973 3.4592C3.326 11.1118.6283 14.9295.1382 19.4609H23.862c-.4901-4.5314-3.1878-8.3491-7.9805-10.1395z"/>
           </svg>
