@@ -19,10 +19,20 @@ export default async function Home() {
   return (
     <main className="min-h-screen flex flex-col">
       {/* Navigation */}
+            {/* Navigation */}
       <nav className="w-full px-6 py-6 flex justify-between items-center max-w-6xl mx-auto">
-        <div className="text-2xl font-extrabold tracking-widest text-vox-charcoal">
-          VOXARENA
+        {/* Brand Logo */}
+        <div className="flex items-center gap-3">
+          <img 
+            src="/logo.png" 
+            alt="VoxArena Logo" 
+            className="w-10 h-10 object-contain" 
+          />
+          <div className="text-2xl font-extrabold tracking-widest text-vox-charcoal">
+            VOXARENA
+          </div>
         </div>
+        
         <a 
           href="#download" 
           className="bg-vox-emerald text-vox-ivory px-6 py-2 rounded-md font-bold text-sm hover:opacity-90 transition"
@@ -129,7 +139,14 @@ export default async function Home() {
 
       {/* Footer */}
       <footer className="bg-vox-charcoal text-vox-ivory py-12 text-center px-6">
-        <div className="text-xl font-bold tracking-widest mb-4">VOXARENA</div>
+                <div className="flex items-center justify-center gap-3 mb-4">
+          <img 
+            src="/logo.png" 
+            alt="VoxArena Logo" 
+            className="w-8 h-8 object-contain" 
+          />
+          <div className="text-xl font-bold tracking-widest">VOXARENA</div>
+        </div>
         <p className="text-vox-grey text-sm max-w-lg mx-auto">
           VoxArena is an independent platform and is not affiliated with any candidate, party, or government body. Its polls are non-binding and do not represent official election results.
         </p>
