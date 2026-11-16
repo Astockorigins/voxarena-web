@@ -6,6 +6,7 @@ type ResultData = {
   total_votes: number;
   color: string;
   image_url?: string | null;
+  total_registered_users: number;
 };
 
 // Web version of the Donut Chart
@@ -17,18 +18,9 @@ const WebDonutChart = ({ percent, color }: { percent: number, color: string }) =
   const strokeDashoffset = circumference - (percent / 100) * circumference;
 
   return (
-    <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
+    <div className="relative flex items-center justify-center shrink-0" style={{ width: size, height: size }}>
       <svg width={size} height={size} className="transform -rotate-90">
-        {/* Background Ring */}
-        <circle
-          stroke="#E5E7EB"
-          fill="none"
-          cx={size / 2}
-          cy={size / 2}
-          r={radius}
-          strokeWidth={strokeWidth}
-        />
-        {/* Colored Ring */}
+        <circle stroke="#E5E7EB" fill="none" cx={size / 2} cy={size / 2} r={radius} strokeWidth={strokeWidth} />
         <circle
           stroke={color}
           fill="none"
@@ -52,7 +44,10 @@ const WebDonutChart = ({ percent, color }: { percent: number, color: string }) =
 export default async function Home() {
   const { data: results } = await supabase.from('vote_totals').select('*');
   const sortedResults = (results || []).sort((a, b) => b.total_votes - a.total_votes) as ResultData[];
+  
   const totalVotes = sortedResults.reduce((sum, item) => sum + item.total_votes, 0);
+  const totalRegistered = sortedResults.length > 0 ? sortedResults[0].total_registered_users : 0;
+  const turnoutPercent = totalRegistered === 0 ? 0 : Math.round((totalVotes / totalRegistered) * 100);
 
   return (
     <main className="min-h-screen flex flex-col">
@@ -91,35 +86,58 @@ export default async function Home() {
 
       {/* Live Results Section */}
       <section id="results" className="bg-vox-card py-24 px-6">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-sm font-extrabold text-vox-emerald tracking-widest mb-2 uppercase">Live From the Arena</h2>
-            <h3 className="text-4xl font-extrabold text-vox-charcoal mb-4">Public Opinion Results</h3>
+            <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-1 rounded-full text-xs font-bold tracking-widest mb-4 uppercase">
+              <div className="w-2 h-2 rounded-full bg-green-600 animate-pulse"></div>
+              Live Tallying
+            </div>
+            <h3 className="text-4xl font-extrabold text-vox-charcoal mb-4">National Results</h3>
           </div>
 
           {/* Big Total Counter */}
           <div className="bg-vox-ivory rounded-2xl p-10 text-center mb-8 shadow-sm">
             <p className="text-sm font-bold text-vox-grey uppercase tracking-widest mb-2">Total Verified Votes</p>
             <p className="text-6xl font-black text-vox-charcoal">{totalVotes.toLocaleString()}</p>
-            <p className="text-sm text-vox-grey italic mt-2">Your voice, on the record.</p>
+          </div>
+
+          {/* Turnout Card */}
+          <div className="bg-vox-ivory p-6 rounded-2xl shadow-sm mb-8 border border-gray-200">
+            <div className="flex justify-between items-center mb-2">
+              <span className="font-bold text-vox-charcoal text-lg">Voter Turnout</span>
+              <span className="font-black text-vox-emerald text-2xl">{turnoutPercent}%</span>
+            </div>
+            <p className="text-vox-grey text-sm">
+              {totalVotes} out of {totalRegistered.toLocaleString()} registered users have voted.
+            </p>
           </div>
 
           {/* Candidate Breakdown */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             {sortedResults.map((candidate) => {
               const percent = totalVotes === 0 ? 0 : Math.round((candidate.total_votes / totalVotes) * 100);
               return (
-                <div key={candidate.candidate_id} className="bg-vox-ivory p-6 rounded-2xl shadow-sm flex items-center gap-6">
-                  <WebDonutChart percent={percent} color={candidate.color} />
-                  
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-1">
+                <div key={candidate.candidate_id} className="bg-vox-ivory p-6 md:p-8 rounded-2xl shadow-sm flex flex-col gap-6">
+                  <div className="flex items-center gap-6">
+                    <WebDonutChart percent={percent} color={candidate.color} />
+                    <div className="flex items-center gap-3">
                       {candidate.image_url && (
-                        <img src={candidate.image_url} alt={candidate.name} className="w-8 h-8 rounded-full object-cover bg-gray-200" />
+                        <img src={candidate.image_url} alt={candidate.name} className="w-12 h-12 rounded-full object-cover bg-gray-200" />
                       )}
-                      <span className="font-bold text-vox-charcoal text-xl">{candidate.name}</span>
+                      <span className="font-bold text-vox-charcoal text-2xl">{candidate.name}</span>
                     </div>
-                    <p className="text-vox-grey font-medium">{candidate.total_votes.toLocaleString()} votes</p>
+                  </div>
+                  
+                  {/* Data Table */}
+                  <div className="w-full border-t border-gray-200">
+                    <div className="flex justify-between py-3 border-b border-gray-200">
+                      <span className="text-vox-grey font-medium">Votes</span>
+                      <span className="font-extrabold text-vox-charcoal">{candidate.total_votes.toLocaleString()}</span>
+                    </div>
+                    <div className="flex justify-between py-3">
+                      <span className="text-vox-grey font-medium">Share</span>
+                      <span className="font-extrabold" style={{ color: candidate.color }}>{percent}%</span>
+                    </div>
                   </div>
                 </div>
               );
