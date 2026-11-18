@@ -7,7 +7,7 @@ const translations = {
   en: {
     navDownload: "Download App",
     heroBadge: "THE FACE-OFF",
-    heroTitle: "Sifuna · Ruto",
+    heroTitle: "Presidential Race",
     heroSubtitle: "A civic, non-binding public opinion poll. Your voice, on the record. Independent and not affiliated with any political party.",
     heroBtn1: "Enter the Arena",
     heroBtn2: "View Live Results",
@@ -26,7 +26,7 @@ const translations = {
     fundingRaised: "raised of",
     downloadTitle: "Download VoxArena",
     downloadSub: "The app is currently available for Android. iOS support is coming soon.",
-    downloadNew: "New Update Available: v1.0.6",
+    downloadNew: "New Update Available: v1.0.7",
     downloadBtnTop: "Download for Android",
     downloadBtnBottom: "VoxArena APK",
     downloadNote: "Note: You may need to allow \"Install from unknown sources\" in your Android settings.",
@@ -36,7 +36,7 @@ const translations = {
   sw: {
     navDownload: "Pakua App",
     heroBadge: "PAMBANO LA WANANCHI",
-    heroTitle: "Sifuna · Ruto",
+    heroTitle: "Kinyang'anyiro cha Urais",
     heroSubtitle: "Kura ya maoni ya umma isiyo ya lazima. Sauti yako, kwenye rekodi. Huru na haihusiani na chama chochote cha siasa.",
     heroBtn1: "Ingia Jukwaani",
     heroBtn2: "Tazama Matokeo",
@@ -55,7 +55,7 @@ const translations = {
     fundingRaised: "zilizokusanywa kati ya",
     downloadTitle: "Pakua VoxArena",
     downloadSub: "Programu inapatikana kwa Android kwa sasa. iOS inakuja hivi karibuni.",
-    downloadNew: "Sasisho Jipya Linapatikana: v1.0.6",
+    downloadNew: "Sasisho Jipya Linapatikana: v1.0.7",
     downloadBtnTop: "Pakua kwa Android",
     downloadBtnBottom: "VoxArena APK",
     downloadNote: "Kumbuka: Unaweza kuhitaji kuruhusu \"Sakinisha kutoka vyanzo visivyojulikana\" kwenye mipangilio yako ya Android.",
@@ -72,7 +72,7 @@ export default function Home() {
 
   const t = translations[lang];
 
-    useEffect(() => {
+  useEffect(() => {
     async function fetchData() {
       try {
         // Fetch Votes
@@ -110,10 +110,10 @@ export default function Home() {
       <nav className="w-full px-6 py-6 flex justify-between items-center max-w-6xl mx-auto">
         <div className="flex items-center gap-3">
           <img src="/logo.png" alt="VoxArena Logo" className="w-10 h-10 object-contain" />
-                    <div className="hidden sm:block text-2xl font-extrabold tracking-widest text-vox-charcoal">VOXARENA</div>
+          <div className="hidden sm:block text-2xl font-extrabold tracking-widest text-vox-charcoal">VOXARENA</div>
         </div>
         
-                <div className="flex items-center gap-2 sm:gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
           {/* Language Toggle */}
           <button 
             onClick={() => setLang(lang === 'en' ? 'sw' : 'en')}
@@ -129,12 +129,12 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center text-center px-6 py-20 max-w-4xl mx-auto">
+      <section className="flex flex-col items-center justify-center text-center px-6 py-20 w-full max-w-4xl mx-auto overflow-hidden">
         <div className="inline-block bg-vox-card text-vox-emerald px-4 py-1 rounded-full text-xs font-bold tracking-widest mb-6">
           {t.heroBadge}
         </div>
-        <h1 className="text-5xl md:text-7xl font-extrabold text-vox-charcoal tracking-tight mb-6">
-          Sifuna <span className="text-vox-emerald">·</span> Ruto
+        <h1 className="text-3xl sm:text-5xl md:text-7xl font-extrabold text-vox-charcoal tracking-tight mb-6 leading-tight break-all px-2 w-full">
+          {t.heroTitle}
         </h1>
         <p className="text-xl md:text-2xl text-vox-grey max-w-2xl mb-12 leading-relaxed">
           {t.heroSubtitle}
@@ -243,7 +243,7 @@ export default function Home() {
         <p className="text-lg text-vox-grey mb-10">{t.downloadSub}</p>
         
         <a 
-          href="https://github.com/Astockorigins/voxarena-web/releases/download/v1.0.6/voxarena.apk" 
+          href="https://github.com/Astockorigins/voxarena-web/releases/download/v1.0.7/voxarena.apk" 
           download
           className="inline-flex items-center gap-4 bg-vox-charcoal text-vox-ivory px-6 py-4 rounded-xl font-bold text-lg hover:bg-black transition shadow-xl hover:-translate-y-1 duration-200"
         >
