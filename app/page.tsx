@@ -26,7 +26,7 @@ const translations = {
     fundingRaised: "raised of",
     downloadTitle: "Download VoxArena",
     downloadSub: "The app is currently available for Android. iOS support is coming soon.",
-    downloadNew: "New Update Available: v1.0.7",
+    downloadNew: "New Update Available: v1.0.9",
     downloadBtnTop: "Download for Android",
     downloadBtnBottom: "VoxArena APK",
     downloadNote: "Note: You may need to allow \"Install from unknown sources\" in your Android settings.",
@@ -55,7 +55,7 @@ const translations = {
     fundingRaised: "zilizokusanywa kati ya",
     downloadTitle: "Pakua VoxArena",
     downloadSub: "Programu inapatikana kwa Android kwa sasa. iOS inakuja hivi karibuni.",
-    downloadNew: "Sasisho Jipya Linapatikana: v1.0.7",
+    downloadNew: "Sasisho Jipya Linapatikana: v1.0.9",
     downloadBtnTop: "Pakua kwa Android",
     downloadBtnBottom: "VoxArena APK",
     downloadNote: "Kumbuka: Unaweza kuhitaji kuruhusu \"Sakinisha kutoka vyanzo visivyojulikana\" kwenye mipangilio yako ya Android.",
@@ -243,7 +243,7 @@ export default function Home() {
         <p className="text-lg text-vox-grey mb-10">{t.downloadSub}</p>
         
         <a 
-          href="https://github.com/Astockorigins/voxarena-web/releases/download/v1.0.7/voxarena.apk" 
+          href="https://github.com/Astockorigins/voxarena-web/releases/download/v1.0.9/voxarena.apk" 
           download
           className="inline-flex items-center gap-4 bg-vox-charcoal text-vox-ivory px-6 py-4 rounded-xl font-bold text-lg hover:bg-black transition shadow-xl hover:-translate-y-1 duration-200"
         >
